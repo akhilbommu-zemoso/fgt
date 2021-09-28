@@ -18,7 +18,7 @@ pipeline{
     }
 		}
     environment {
-        MY_KUBECONFIG = credentials('config-file')
+        MY_KUBECONFIG = credentials('master2-rishmita')
     }
 		stages{
 				
