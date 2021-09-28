@@ -1,0 +1,136 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-deploy
+  labels:
+    name: postgres-deploy
+    app: FGT
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgres-pod
+      app: FGT
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        name: postgres-pod
+        app: FGT
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: "POSTGRES_USER"
+              value: "postgres2"
+            - name: "POSTGRES_PASSWORD"
+              value: "password" 
+            - name: "POSTGRES_DB"
+              value: "financetracker"
+          volumeMounts:
+            - name: pv-data-fgt
+              mountPath: /var/lib/postgresql/fgtdata
+      volumes:
+        - name: pv-data-fgt
+          persistentVolumeClaim:
+            claimName: pvc-fgt
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+  labels:
+    name: frontend-deploy
+    app: FGT
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: frontend-pod
+      app: FGT
+  template:
+    metadata:
+      name: frontend-pod
+      labels:
+        name: frontend-pod
+        app: FGT
+    spec:
+      containers:
+        - name: frontend
+          image: akhilzemoso/fgt
+          ports:
+            - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-budget-deploy
+  labels:
+    name: backend-budget-deploy
+    app: FGT
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: backend-budget-pod
+      app: FGT
+  template:
+    metadata:
+      name: backend-budget-pod
+      labels:
+        name: backend-budget-pod
+        app: FGT
+    spec:
+      containers:
+        - name: backend
+          image: akhilzemoso/budgetsvc4
+          ports:
+            - containerPort: 8083
+          env:
+            - name: "SPRING_DATASOURCE_URL"
+              value: "jdbc:postgresql://postgres:5432/financetracker"
+            - name: "SPRING_DATASOURCE_USERNAME"
+              value: "postgres2"
+            - name: "SPRING_DATASOURCE_PASSWORD"
+              value: "password"
+            - name: "SPRING_JPA_HIBERNATE_DDL_AUTO"
+              value: "update"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-transaction-deploy
+  labels:
+    name: backend-transaction-deploy
+    app: FGT
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: backend-transaction-pod
+      app: FGT
+  template:
+    metadata:
+      name: backend-transaction-pod
+      labels:
+        name: backend-transaction-pod
+        app: FGT
+    spec:
+      containers:
+        - name: backend
+          image: akhilzemoso/transactionsvc
+          ports:
+            - containerPort: 8084
+          env:
+            - name: "SPRING_DATASOURCE_URL"
+              value: "jdbc:postgresql://postgres:5432/financetracker"
+            - name: "SPRING_DATASOURCE_USERNAME"
+              value: "postgres2"
+            - name: "SPRING_DATASOURCE_PASSWORD"
+              value: "password"
+            - name: "SPRING_JPA_HIBERNATE_DDL_AUTO"
+              value: "update"

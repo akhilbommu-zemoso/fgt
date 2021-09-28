@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  labels:
+    name: frontend-service
+    app: FGT
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    name: frontend-pod
+    app: FGT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    name: postgres-service
+    app: FGT
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    name: postgres-pod
+    app: FGT 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-budget-service
+  labels:
+    name: backend-budget-service
+    app: FGT
+spec:
+  ports:
+    - port: 8083
+      targetPort: 8083
+  selector:
+    name: backend-budget-pod
+    app: FGT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-transaction-service
+  labels:
+    name: backend-transaction-service
+    app: FGT
+spec:
+  ports:
+    - port: 8084
+      targetPort: 8084
+  selector:
+    name: backend-transaction-pod
+    app: FGT
