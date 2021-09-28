@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  fgt-chart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-09-28T16:49:38.017049854Z"
+    description: A Helm chart for Kubernetes
+    digest: 514673516175d51ca6171ca40a00b6efed019506bcf41ca4e876f07b1ea7dbdf
+    name: fgt-chart
+    type: application
+    urls:
+    - https://akhilbommu-zemoso.github.io/fgt/fgt-chart-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-09-28T16:49:38.016232246Z"
