@@ -25,7 +25,7 @@ pipeline{
                 stage("add Repo") {
                         steps {
                             container('fgt-helm'){
-                               sh "helm repo add fgt https://pdhanrajnath.github.io/gc/ "
+                               sh "helm repo add fgt https://akhilbommu-zemoso.github.io/fgt/ "
                             }
                             
                         }
@@ -37,7 +37,7 @@ pipeline{
                                sh """
                                   export KUBECONFIG=\${MY_KUBECONFIG}
                                   helm repo update 
-                                  helm install fgt fgt/ -n fgt                              
+                                  helm install fgt fgt/fgt-chart -n fgt                              
                                   """
                             }
                             
