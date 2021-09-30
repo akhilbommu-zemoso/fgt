@@ -61,7 +61,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: akhilzemoso/fgt
+          image: akhilzemoso/fe_fgt_jenkins
           ports:
             - containerPort: 3000
 ---
