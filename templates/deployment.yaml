@@ -87,7 +87,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: akhilzemoso/budgetsvc4
+          image: akhilzemoso/be_budget_jenkins
           ports:
             - containerPort: 8083
           env:
@@ -122,7 +122,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: akhilzemoso/transactionsvc
+          image: akhilzemoso/be_transaction_jenkins
           ports:
             - containerPort: 8084
           env:
