@@ -2,16 +2,16 @@ pipeline{
 	agent{		
 		kubernetes {
     			yaml '''
-        			apiVersion: v1
-				kind: Pod
-				spec:
-				  containers:
-				  - name: fgt-helm
-				    image: alpine/helm
-				    command:
-				    - cat
-				    tty: true
-				'''
+        		apiVersion: v1
+			kind: Pod
+			spec:
+			  containers:
+			  - name: fgt-helm
+			    image: alpine/helm
+			    command:
+			    - cat
+			    tty: true
+			'''
     		}
 	}
 	environment {
