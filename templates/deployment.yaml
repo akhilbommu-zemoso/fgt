@@ -61,7 +61,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: akhilzemoso/fe_fgt_jenkins:18fb6fd3395ad74a99e0dc530712e1c298e57e73
+          image: akhilzemoso/fe_fgt_jenkins:latest
           ports:
             - containerPort: 3000
 ---
@@ -87,7 +87,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: akhilzemoso/be_budget_jenkins:c52c3265c55268a872faa7f793666cf416749be1
+          image: akhilzemoso/be_budget_jenkins:latest
           ports:
             - containerPort: 8083
           env:
@@ -122,7 +122,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: akhilzemoso/be_transaction_jenkins:26d206e169d097b8d0d42230e1f6e05f803d3b57
+          image: akhilzemoso/be_transaction_jenkins:latest
           ports:
             - containerPort: 8084
           env:
