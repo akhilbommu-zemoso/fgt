@@ -32,7 +32,7 @@ spec:
                                		sh """
 						export KUBECONFIG=\${MY_KUBECONFIG}
 						helm repo update 
-						helm install fgt fgt/fgt-chart -n fgt                              
+						helm upgrade --install fgt fgt/fgt-chart -n fgt                              
 					"""
                             	}
                         }
