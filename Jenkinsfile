@@ -21,7 +21,7 @@ podTemplate(label: 'fgt', containers: [
 		])
 		
 		stage("Helm install"){
-			git 'https://akhilbommu-zemoso.github.io/fgt/'
+			git 'https://github.com/akhilbommu-zemoso/fgt/'
 			container('fgt-helm'){
 				withCredentials([file(credentialsId: 'master2-rishmita', variable: 'config')]){
 					sh """
