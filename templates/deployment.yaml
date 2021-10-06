@@ -61,7 +61,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: akhilzemoso/fe_fgt_jenkins:16
+          image: akhilzemoso/fe_fgt_jenkins:{{ .Values.fetag }}
           ports:
             - containerPort: 3000
 ---
@@ -87,7 +87,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: akhilzemoso/be_budget_jenkins:latest
+          image: akhilzemoso/be_budget_jenkins:{{ .Values.betag }}
           ports:
             - containerPort: 8083
           env:
