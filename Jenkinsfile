@@ -25,7 +25,7 @@ podTemplate(label: 'fgt', containers: [
 			container('fgt-helm'){
 				withCredentials([file(credentialsId: 'master2-rishmita', variable: 'config')]){
 					sh """
-					export KUBECONFIG = \${config}
+					export KUBECONFIG=\${config}
 					helm upgrade --install fgt fgt/fgt-chart -n fgt --set fetag=${fe_tag} --set betag=${be_budget_tag}
 					"""
 				}
