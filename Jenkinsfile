@@ -1,10 +1,10 @@
 import groovy.transform.Field
 
-podTemplate(label: 'fgt', containers: [
+podTemplate(containers: [
 	containerTemplate(name: 'fgt-helm', image: 'alpine/helm', command: 'cat', ttyEnabled: true)],
 	volumes: [hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')]
 	   ){
-	node('fgt'){
+	node(POD_LABEL){
 		properties([
 			parameters([
 				string(
